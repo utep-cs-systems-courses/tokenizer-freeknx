@@ -103,7 +103,7 @@ char **tokenize(char* str){
     copy2 = word_terminator(copy1);
     num_char = copy2-copy1;
     tokens[i] = copy_str(copy1, num_char);
-    copy1 = word_terminator(copy1);
+    copy1 = copy2;
     i++;
   }
   tokens[i] = '\0';
@@ -113,7 +113,6 @@ char **tokenize(char* str){
 /* Prints all tokens. */
 void print_tokens(char **tokens){
   int i = 0;
-  
   while(tokens[i]){
     printf("tokens[%d] %s\n", i, tokens[i]);
     i++;

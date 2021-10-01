@@ -15,25 +15,26 @@ List* init_history(){
    char* str - the string to store
 */
 void add_history(List *list, char *str){
-  Item *temp = list->root;
+  Item *temp;
   Item *node = malloc(sizeof(Item));
-  int length = word_terminator(str)-word_start(str);
-  char  *newString = str;
-  
-  while(temp->next != NULL){
-    //printf("passing %s at [%d]\n", temp->str, temp->id);
-    temp = temp->next;
+
+  if(list->root == NULL){
+    node->id = 1;
+    list->root = node;
   }
-  //printf("inserting %s at [%d]", temp->str, temp->id);
+  else{
+    temp = list->root;
+    while(temp->next != NULL){
+      temp = temp->next;
+    }
   
-  node->id = temp->id + 1;
-  node->str = newString;
-  if(temp = list->root){
-    temp->id = temp->id + 1;
-    temp->str = newString;
-  }
-  else
+    node->id = temp->id + 1;
     temp->next = node;
+  }
+
+  node->str = str;
+  node->next = NULL;
+  
 }
 
 /* Retrieve the string stored in the node where Item->id == id.
